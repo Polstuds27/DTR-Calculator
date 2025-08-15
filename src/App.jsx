@@ -91,8 +91,8 @@ function App() {
       }));
 
     const calculateDayEquiv = (hours) =>{
-      if(hours >= 9) return 1;
-      else if (hours < 9) return 0;
+      if(parseInt(hours) >= 9) return 1;
+      else if (parseInt(hours) < 9) return 0;
       else return 0;
     }
 
