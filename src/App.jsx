@@ -1,7 +1,7 @@
 
 import Footer from "./web_components/footer/Footer";
 import Header from "./web_components/header/Header";
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 function App() {
 
   const [name, setName] = useState("");
@@ -60,12 +60,52 @@ function App() {
       [id]: value
     }));
   };
+
+  useEffect(()=>{
+
+    const calculateDayEquiv = (hours) =>{
+      if(hours >= 9) return 1;
+      else if (hours < 9 && hours > 0) return 0.5;
+      else return 0;
+    }
+
+    const calculateOT = (hours) =>{
+      if(!hours || hours < 9) return 0;
+
+      let OThours = hours - 9;
+      return OThours;
+    };
+
+    setEquiv((prev) =>({
+      ...prev,
+      fri: calculateDayEquiv(hours.friHour),
+      sat: calculateDayEquiv(hours.satHour),
+      sun: calculateDayEquiv(hours.sunHour),
+      mon: calculateDayEquiv(hours.monHour),
+      tue: calculateDayEquiv(hours.tueHour),
+      wed: calculateDayEquiv(hours.wedHour),
+      thu: calculateDayEquiv(hours.thuHour),
+    })) ;
+
+    setOT((prev) =>({
+      ...prev,
+      fri: calculateOT(hours.friHour),
+      sat: calculateOT(hours.satHour),
+      sun: calculateOT(hours.sunHour),
+      mon: calculateOT(hours.monHour),
+      tue: calculateOT(hours.tueHour),
+      wed: calculateOT(hours.wedHour),
+      thu: calculateOT(hours.thuHour),
+    }));
+
+  }, [hours]);
   
   
   const calculateHours = () =>{
     const hoursBetween = (time1, time2) =>{
 
       if(!time1 || !time2) return 0;
+      if(time1 === time2) return 12;
       let [h1 , m1] = time1.split(":").map(Number); // for in
       let [h2 , m2] = time2.split(":").map(Number); // for out
 
@@ -77,6 +117,7 @@ function App() {
       if(timeDiff < 0) timeDiff  += 24 * 60;
       return timeDiff / 60;
     }
+
 
     setHour((prev) =>({
       ...prev,
@@ -90,42 +131,6 @@ function App() {
 
       }));
 
-    const calculateDayEquiv = (hours) =>{
-      if(parseInt(hours) >= 9) return 1;
-      else if (parseInt(hours) < 9) return 0;
-      else return 0;
-    }
-
-    setEquiv((prev) =>({
-      ...prev,
-      fri: calculateDayEquiv(parseInt(hours.friHour)),
-      sat: calculateDayEquiv(parseInt(hours.satHour)),
-      sun: calculateDayEquiv(parseInt(hours.sunHour)),
-      mon: calculateDayEquiv(parseInt(hours.monHour)),
-      tue: calculateDayEquiv(parseInt(hours.tueHour)),
-      wed: calculateDayEquiv(parseInt(hours.wedHour)),
-      thu: calculateDayEquiv(parseInt(hours.thuHour)),
-    })) ;
-
-    const calculateOT = (hours) =>{
-      if(!hours) return 0;
-
-      let OThours = parseInt(hours)  - 9;
-      return OThours;
-    };
-
-    setOT((prev) =>({
-      ...prev,
-      fri: calculateOT(parseInt(hours.friHour)),
-      sat: calculateOT(parseInt(hours.satHour)),
-      sun: calculateOT(parseInt(hours.sunHour)),
-      mon: calculateOT(parseInt(hours.monHour)),
-      tue: calculateOT(parseInt(hours.tueHour)),
-      wed: calculateOT(parseInt(hours.wedHour)),
-      thu: calculateOT(parseInt(hours.thuHour)),
-    }));
-
-    
     
   }
 
