@@ -139,7 +139,7 @@ function App() {
       let min1 = h1 * 60 +m1;
       let min2 = h2 * 60 +m2;
 
-      let timeDiff = min2 - min1;
+      let timeDiff = parseFloat(min2.toFixed(1)) - parseFloat(min1.toFixed(1));
 
       if(timeDiff < 0) timeDiff  += 24 * 60;
       return timeDiff / 60;
@@ -369,8 +369,6 @@ function App() {
                 <td><input type="time" name="thuNewIn" id="thuNewIn" onChange={handleTime}/></td>
                 <td><input type="time" name="thuNewOut" id="thuNewOut" onChange={handleTime}/></td>  
               </tr>
-              
-              
 
             </tbody>
           </table>
