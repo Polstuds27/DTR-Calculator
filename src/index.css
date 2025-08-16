@@ -12,13 +12,87 @@ main{
     overflow-y: auto;
     display: flex;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.name-container{
+    width: 1000px;
+    height: 300px;
+    background-color: #333;
+    align-self: center;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.name-container input[type="button"]{
+    height: 30px;
+    width: 150px;
+    margin-left: 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#start-label, #end-label{
+    color: white;
+    margin-left: auto;
+}
+
+#start-date, #end-date{
+    height: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 0px;
+    border-radius: 10px;
+    border: none;
+}
+
+#end-date{
+    margin-left: 8px;
+}
+
+.name-container table{
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    color: white;
+    justify-self: center;
+}
+
+.name-container table thead tr th{
+    padding: 10px 100px;
+    border-bottom: 1px solid #fff;
+}
+
+.name-container table tbody tr td{
+    padding: 10px 100px;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+    
+}
+
+.name-container table tbody tr:last-child td{
+    border: none;
+}
+
+.input-container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
 }
 
 .table-container{
-    width: 450px;
+    width: 500px;
     min-height: 500px;
     display: flex;
-    padding: 40px;
+    padding: 10px;
     margin: 20px;
     border-radius: 10px;
     background-color: #333;
@@ -40,6 +114,7 @@ main{
     border: 2px solid #fff;
     color: white;
     font-size: 20px;
+    justify-self: center;
 }
 
 
@@ -54,8 +129,8 @@ main{
     text-align: center;
 }
 
-.table-container table tbody tr:last-child td, .summary-container table tbody tr:last-child td{
-    border: none;
+.table-container table tbody tr:last-child td, .summary-container table tbody tr:last-child td, .preview-container table tbody tr:last-child td{
+    border-bottom: none;
 }
 
 .table-container table tbody tr td:first-child,
@@ -102,7 +177,7 @@ input[type="time"]{
     font-size: 20px;
     border: none;
     align-self: center;
-    margin-top: 20px;
+    margin: 20px 10px;
     cursor: pointer;
     font-weight: 700;
 }
@@ -114,8 +189,63 @@ input[type="time"]{
     font-size: 20px;
     border: none;
     align-self: center;
-    margin-top: 20px;
-    margin-left: 120px;
+    margin: 10px 5px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+#save-button{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+    align-self: center;
+    margin: 20px 10px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.preview-container{
+    width: fit-content;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #333;
+    border-radius: 10px;
+    align-self: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    
+}
+
+.preview-container table{
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #fff;
+    color: white;
+    font-size: 14px;
+    justify-self: center;
+
+}
+
+.preview-container table thead tr th{
+    border: 0.5px solid #fff;
+    padding: 10px 10px;
+}
+
+.preview-container table tbody tr td{
+    text-align: center;
+    border: 0.5px solid #fff;
+}
+
+.preview-container button{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+    align-self: center;
+    margin: 10px 5px;
     cursor: pointer;
     font-weight: 700;
 }
