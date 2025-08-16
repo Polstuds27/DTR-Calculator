@@ -171,36 +171,58 @@ function App() {
   let trackId = useRef(0);
   const [dtrList, setDtrList] = useState([]);
   
-  const saveData = () =>{
-    const tempList = [];
+  const saveData = () => {
+  const tempList = [...dtrList]; 
 
-    for(let i = 0; i < data.length; i++){
+  data.forEach((item) => {
+    const existingIndex = tempList.findIndex(d => d.name === item.name);//pang check if may exist
+
+    if (existingIndex !== -1) {
+      
+      tempList[existingIndex] = { 
+        ...tempList[existingIndex],
+        friOT: tempList[existingIndex].friOT + OT.fri,
+        satOT: tempList[existingIndex].satOT + OT.sat,
+        sunOT: tempList[existingIndex].sunOT + OT.sun,
+        monOT: tempList[existingIndex].monOT + OT.mon,
+        tueOT: tempList[existingIndex].tueOT + OT.tue,
+        wedOT: tempList[existingIndex].wedOT + OT.wed,
+        thuOT: tempList[existingIndex].thuOT + OT.thuOld,
+        Total_OT: tempList[existingIndex].Total_OT + totalOTHours,
+        Total_Days: tempList[existingIndex].Total_Days + totalDayEquiv,
+        
+      };
+    } else {
+      // else wala gawa panibago
+
+      // para akong nag dsa ulit TT
       trackId.current++;
-    const dtrData = {
-      id: trackId.current,
-      name: data[i].name,
-      friEquiv: dayEquiv.fri,
-      friOT: OT.fri,
-      satEquiv: dayEquiv.sat,
-      satOT: OT.sat,
-      sunEquiv: dayEquiv.sun,
-      sunOT: OT.sun,
-      monEquiv: dayEquiv.mon,
-      monOT: OT.mon,
-      tueEquiv: dayEquiv.tue,
-      tueOT: OT.tue,
-      wedEquiv: dayEquiv.wed,
-      wedOT: OT.wed,
-      thuEquiv: dayEquiv.thuNew,
-      thuOT: OT.thuOld,
-      Total_OT: totalOTHours,
-      Total_Days: totalDayEquiv,
-
-    }
+      const dtrData = {
+        id: trackId.current,
+        name: item.name,
+        friEquiv: dayEquiv.fri,
+        friOT: OT.fri,
+        satEquiv: dayEquiv.sat,
+        satOT: OT.sat,
+        sunEquiv: dayEquiv.sun,
+        sunOT: OT.sun,
+        monEquiv: dayEquiv.mon,
+        monOT: OT.mon,
+        tueEquiv: dayEquiv.tue,
+        tueOT: OT.tue,
+        wedEquiv: dayEquiv.wed,
+        wedOT: OT.wed,
+        thuEquiv: dayEquiv.thuNew,
+        thuOT: OT.thuOld,
+        Total_OT: totalOTHours,
+        Total_Days: totalDayEquiv,
+      };
       tempList.push(dtrData);
     }
-    setDtrList((prevList) => [...prevList, ...tempList]);
-  } 
+  });
+
+  setDtrList(tempList);
+};
 
   const days = [];
   const trackDays = (start, end) =>{
@@ -217,6 +239,7 @@ function App() {
     }
     
   }
+
 
   const download = () =>{
 
