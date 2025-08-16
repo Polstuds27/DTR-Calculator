@@ -96,33 +96,33 @@ function App() {
     }
 
     const calculateOT = (hours) =>{
-      if(hours > 9) return hours-=9;
+      if(hours > 9) return parseFloat((hours-=9).toFixed(1));
       else if(hours < 9) return 0;
       else return 0;
     };
 
     setEquiv((prev) =>({
       ...prev,
-      fri: calculateDayEquiv(hours.friHour).toFixed(1),
-      sat: calculateDayEquiv(hours.satHour).toFixed(1),
-      sun: calculateDayEquiv(hours.sunHour).toFixed(1),
-      mon: calculateDayEquiv(hours.monHour).toFixed(1),
-      tue: calculateDayEquiv(hours.tueHour).toFixed(1),
-      wed: calculateDayEquiv(hours.wedHour).toFixed(1),
-      thuNew: calculateDayEquiv(hours.thuNewHour).toFixed(1),
-      thuOld: calculateDayEquiv(hours.thuOldHour).toFixed(1),
+      fri: calculateDayEquiv(hours.friHour),
+      sat: calculateDayEquiv(hours.satHour),
+      sun: calculateDayEquiv(hours.sunHour),
+      mon: calculateDayEquiv(hours.monHour),
+      tue: calculateDayEquiv(hours.tueHour),
+      wed: calculateDayEquiv(hours.wedHour),
+      thuNew: calculateDayEquiv(hours.thuNewHour),
+      thuOld: calculateDayEquiv(hours.thuOldHour),
     })) ;
 
     setOT((prev) =>({
       ...prev,
-      fri: calculateOT(hours.friHour).toFixed(1),
-      sat: calculateOT(hours.satHour).toFixed(1),
-      sun: calculateOT(hours.sunHour).toFixed(1),
-      mon: calculateOT(hours.monHour).toFixed(1),
-      tue: calculateOT(hours.tueHour).toFixed(1),
-      wed: calculateOT(hours.wedHour).toFixed(1),
-      thuNew: calculateOT(hours.thuNewHour).toFixed(1),
-      thuOld: calculateOT(hours.thuOldHour).toFixed(1),
+      fri: calculateOT(hours.friHour),
+      sat: calculateOT(hours.satHour),
+      sun: calculateOT(hours.sunHour),
+      mon: calculateOT(hours.monHour),
+      tue: calculateOT(hours.tueHour),
+      wed: calculateOT(hours.wedHour),
+      thuNew: calculateOT(hours.thuNewHour),
+      thuOld: calculateOT(hours.thuOldHour),
     }));
 
   }, [hours]);
