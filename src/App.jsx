@@ -91,7 +91,7 @@ function App() {
 
     const calculateDayEquiv = (hours) =>{
       if(hours >= 9) return 1;
-      else if (hours < 9 && hours > 0) return 0.5;
+      else if (hours < 9 && hours > 0) return parseFloat((hours/9).toFixed(1));
       else return 0;
     }
 
@@ -159,14 +159,14 @@ function App() {
       }));
 
     }
-
+    /*
   const clear = () =>{
     setTimes("");
     setHour("");
     setEquiv("");
     setOT("");
     setData([]);
-  }
+  }*/
 
   let trackId = useRef(0);
   const [dtrList, setDtrList] = useState([]);
@@ -182,15 +182,21 @@ function App() {
       tempList[existingIndex] = { 
         ...tempList[existingIndex],
         friOT: tempList[existingIndex].friOT + OT.fri,
+        friEquiv: tempList[existingIndex].friEquiv + dayEquiv.fri,
         satOT: tempList[existingIndex].satOT + OT.sat,
+        satEquiv: tempList[existingIndex].satEquiv + dayEquiv.sat,
         sunOT: tempList[existingIndex].sunOT + OT.sun,
+        sunEquiv: tempList[existingIndex].sunEquiv + dayEquiv.sun,
         monOT: tempList[existingIndex].monOT + OT.mon,
+        monEquiv: tempList[existingIndex].monEquiv + dayEquiv.mon,
         tueOT: tempList[existingIndex].tueOT + OT.tue,
+        tueEquiv: tempList[existingIndex].tueEquiv + dayEquiv.tue,
         wedOT: tempList[existingIndex].wedOT + OT.wed,
+        wedEquiv: tempList[existingIndex].wedEquiv + dayEquiv.wed,
         thuOT: tempList[existingIndex].thuOT + OT.thuOld,
+        thuEquiv: tempList[existingIndex].thuEquiv + dayEquiv.thuNew,
         Total_OT: tempList[existingIndex].Total_OT + totalOTHours,
         Total_Days: tempList[existingIndex].Total_Days + totalDayEquiv,
-        
       };
     } else {
       // else wala gawa panibago
@@ -396,7 +402,7 @@ function App() {
             </tbody>
           </table>
           <input type="button" value="Calculate" id="calculate-button" onClick={calculateHours}/>
-          <input type="reset" value="Clear" id="clear-button" onClick={clear}/>
+          <input type="reset" value="Clear" id="clear-button"/>
           <input type="button" value="Save" id="save-button" onClick={saveData}/>
           </form>
       </div>
